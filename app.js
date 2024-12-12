@@ -6,7 +6,7 @@ class App{
 
         WebFont.load({
             google: {
-              families: ['Hahmlet:400']
+              families: ['Hahmlet:700']
             },
             fontactive: () => {
                 // this.text = new Text();

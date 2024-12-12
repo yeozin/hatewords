@@ -13,5 +13,24 @@ body{
     width: 100%;
     height: 100%;
     overflow: hidden;
-    
+}
+
+div{
+    z-index: 1;
+    font-size: 1.3rem;
+    font-family: notoSansKR;
+    font-weight: 500;
+    color: #ffffff;
+    display: block;
+    position: absolute;
+    text-align: center;
+    top: 85%;
+    left: 45%;
+
+}
+
+.notice{
+    top: 5%;
+    left: 45%;
+    color: #990000;
 }

@@ -1,10 +1,10 @@
-const FRICTION = 0.98; // 마찰력 클수록 글자 더 많이 퍼짐
-const MOVE_SPEED = 0.1; // 움직이는 속도 조절
+const FRICTION = 1; // 마찰력 클수록 글자 더 많이 퍼짐
+const MOVE_SPEED = 0.15; // 움직이는 속도 조절
 
 export class Particle{
     constructor(pos, texture){
         this.sprite = new PIXI.Sprite(texture);
-        this.sprite.scale.set(0.2);
+        this.sprite.scale.set(0.3);
 
         this.savedX = pos.x;
         this.savedY = pos.y;

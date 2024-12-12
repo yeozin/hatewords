@@ -13,29 +13,34 @@ export class Text{
         this.canvas.width = stageWidth;
         this.canvas.height = stageHeight;
 
-        const myText = str;
-        const fontWidth = 100;
-        const fontSize = 130;
+        //const myText = str;
+        const lines = str.split('\n'); // 줄바꿈 기준으로 텍스트 나누기
+        const fontWidth = 700;
+        const fontSize = 161;
         const fontName = 'Hahmlet';
+        const lineHeight = fontSize + 30; // 줄 간격 추가
 
         this.ctx.clearRect(0,0,stageWidth, stageHeight);
         this.ctx.font = `${fontWidth} ${fontSize}px ${fontName}`;
         this.ctx.fillStyle = `rgba(0,0,0,0.3)`;
         this.ctx.textBaseline = `middle`;
 
-        // 지정된 글꼴을 사용하여 그릴 때 지정 텍스트 측정
-        const fontPos = this.ctx.measureText(myText);
-        // 텍스트 출력 캔버스 함수
-        // 객체.fillText("텍스트", X좌표, Y좌표);
-        this.ctx.fillText(
-            myText,
-            (stageWidth - fontPos.width)/2,
-            fontPos.actualBoundingBoxAscent+            
-            ((stageHeight - fontSize)/2)
-        );
-        
-
-        return this.dotPos(density, stageWidth, stageHeight);
+        const particles = [];
+        lines.forEach((line, index) => {
+            const fontPos = this.ctx.measureText(line);
+            const x = (stageWidth - fontPos.width) / 2; // 중앙 정렬
+            const y =
+                ((stageHeight - lines.length * lineHeight) / 1.5) +
+                index * lineHeight;
+    
+            // 텍스트 출력
+            this.ctx.fillText(line, x, y);
+    
+            // 각 줄에 대한 입자 생성
+            particles.push(...this.dotPos(density, stageWidth, stageHeight));
+        });
+    
+        return particles;
     }
 
     dotPos(density, stageWidth, stageHeight){
